@@ -1,3 +1,4 @@
+#=======================================import library============================
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -8,15 +9,25 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import difflib
 import sys
+#=========================================end of library===========================
 
+
+
+#===================================Modeling=======================================
 pd.set_option("display.max_columns", None)
 nltk.download('punkt')
 nltk.download('stopwords')
 
+#loading data set
 data_film = pd.read_csv("Dataset/movies.csv")
+
+#data cleansing
 data_film.fillna(" ", axis=0, inplace=True)
+
+#feature selection
 data_film["konten_film"] = data_film["genres"] + " " + data_film["overview"] + " " + data_film["keywords"] + " " + data_film["tagline"] + " " + data_film["cast"] + " " + data_film["director"]
 
+#preprocesing
 stop_words = nltk.corpus.stopwords.words('english')
 
 def normalize_document(doc):
@@ -32,11 +43,51 @@ def normalize_document(doc):
 normalisasi_corpus = np.vectorize(normalize_document)
 hasil_normalize_corpus = normalisasi_corpus(list(data_film['konten_film']))
 
+#extration feture
 vectorizer = TfidfVectorizer()
 fitur_vectors = vectorizer.fit_transform(hasil_normalize_corpus)
-kemiripan = cosine_similarity(fitur_vectors)
 
-st.header("Halo")
+#cosine score
+kemiripan = cosine_similarity(fitur_vectors)
+#==================================End of Model=====================================
+
+
+
+#===================================Website=========================================
+st.header("Selamat datang")
+st.subheader("Silahkan cari film yang kamu sukai di website ini")
+st.write("Top 5 film berdasarkan vote")
+kolom = st.columns(5)
+num = 5
+list_top5_by_vote = ["image/stif_upper_lips.png", "image/me_and_u_5_buck.png","image\dancer-texas.png","image/littlebigtop.png","image/sardaarji.png"]
+
+
+top5_movie = data_film[["title", "vote_average"]]
+top_5_movie_by_average_score = top5_movie.sort_values(by="vote_average", ascending=False)
+top_5_movie_by_average_score = top_5_movie_by_average_score["title"].head().to_list()
+
+for col_num, (title, image_path) in enumerate(zip(top_5_movie_by_average_score, list_top5_by_vote), start=1):
+    with kolom[col_num - 1]:
+        st.image(image_path)
+        st.write("TOP ",str(num)," : ",title)
+        num-=1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#======================Rekomendasi Sistem=========================================
 judul_film = st.text_input("Masukan Judul Film")
 judul_film = judul_film.lower()
 
