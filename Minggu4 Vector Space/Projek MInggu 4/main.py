@@ -72,6 +72,36 @@ for col_num, (title, image_path) in enumerate(zip(top_5_movie_by_average_score, 
         st.write("TOP ",str(num)," : ",title)
         num-=1
 
+st.write("Film yang serupa dengan : ",top_5_movie_by_average_score[0])
+col6,col7= st.columns(2)
+with col6:
+    
+    judul_film = "Sardaarji"
+
+    list_judul_film_dari_dataset = data_film["title"].tolist()
+
+    pencarian_judul_terdekat_dari_user = difflib.get_close_matches(judul_film, list_judul_film_dari_dataset)
+
+    judul_paling_mirip = pencarian_judul_terdekat_dari_user[0]
+
+    index_dari_judul_film = data_film[data_film.title==judul_paling_mirip]['index'].values[0]
+
+    kemiripan_skor = list(enumerate(kemiripan[index_dari_judul_film]))
+
+    urutan_kemiripan_film = sorted(kemiripan_skor, key = lambda x:x[1], reverse = True) 
+
+    i = 1
+
+    for film in urutan_kemiripan_film:
+        index = film[0]
+        judul_dari_index = data_film[data_film.index==index]['title'].values[0]
+        if (i<6):
+            st.write(i, '.',judul_dari_index)
+            i+=1
+
+with col7:
+    st.write("jago")
+
 
 
 
