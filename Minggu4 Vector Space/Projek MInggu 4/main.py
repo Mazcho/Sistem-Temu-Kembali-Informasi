@@ -55,6 +55,50 @@ kemiripan = cosine_similarity(fitur_vectors)
 
 
 #==================================Funct Rekomendasi Film===========================
+def rekomendasi_film_aksi(input_genre):
+    # Membuat kondisi yang akan digunakan dalam operasi pencocokan genre
+    condition = data_film['Action'].apply(lambda x: any(genre in x for genre in input_genre))
+
+    # Menggunakan kondisi untuk melakukan pencocokan genre
+    genres = data_film[condition]
+    genres = genres.sort_values(by="vote_average", ascending=False)
+    genres = genres["title"][0]
+
+    input_film_title = genres.lower()
+    if input_film_title == "off":
+        st.write("Program selesai")
+        st.stop()
+    list_judul_film_dari_dataset = data_film["title"].tolist()
+    pencarian_judul_terdekat_dari_user = difflib.get_close_matches(input_film_title, list_judul_film_dari_dataset)
+
+    if not pencarian_judul_terdekat_dari_user:
+        return ["Tidak ada judul film yang cocok ditemukan untuk " + input_film_title]
+
+    pencarian_judul_terdekat_dari_user_str = pencarian_judul_terdekat_dari_user[0].lower()
+
+    if input_film_title != pencarian_judul_terdekat_dari_user_str:
+        return ["Tidak ada judul film yang cocok ditemukan untuk " + input_film_title]
+
+    judul_paling_mirip = pencarian_judul_terdekat_dari_user[0]
+    index_dari_judul_film = data_film[data_film.title == judul_paling_mirip]['index'].values[0]
+    kemiripan_skor = list(enumerate(kemiripan[index_dari_judul_film]))
+    urutan_kemiripan_film = sorted(kemiripan_skor, key=lambda x: x[1], reverse=True)
+    recommended_movies = []
+    i = 1
+
+    for film in urutan_kemiripan_film:
+        index = film[0]
+        judul_dari_index = data_film[data_film.index == index]['title'].values[0]
+        if (i < 7):
+            if (i == 1):
+                st.write('Film yang serupa dengan : ', judul_dari_index)
+                i += 1
+            else:
+                st.write(i - 1, '.', judul_dari_index)
+                i += 1
+
+    return recommended_movies
+
 def recommend_similar_movies(input_film_title):
     input_film_title = input_film_title.lower()
     if input_film_title == "off":
@@ -88,7 +132,6 @@ def recommend_similar_movies(input_film_title):
             else:
                 st.write(i - 1, '.', judul_dari_index)
                 i += 1
-            
 
     return recommended_movies
 def user_input_title(judul_film):
@@ -284,8 +327,22 @@ if menuapp=="Rekomendasi Film":
         recommend_similar_movies(top_5_movie_by_average_score[1])
     with col3:
         recommend_similar_movies(top_5_movie_by_average_score[2])
+    
+    st.write("Top 5 rekomendasi dari genre: Aksi")
+    kolom = st.columns(5)
+    num = 1
+    list_top5_by_vote = ["image/stif_upper_lips.webp", "image/me_and_u_5_buck.webp","image\dancer-texas.webp","image/littlebigtop.webp","image/sardaarji.webp"]
 
 
+    top5_movie = data_film[["title", "vote_average"]]
+    top_5_movie_by_average_score = top5_movie.sort_values(by="vote_average", ascending=False)
+    top_5_movie_by_average_score = top_5_movie_by_average_score["title"].head().to_list()
+
+    for col_num, (title, image_path) in enumerate(zip(top_5_movie_by_average_score, list_top5_by_vote), start=1):
+        with kolom[col_num - 1]:
+            st.image(image_path)
+            st.write("TOP ",str(num)," : ",title)
+            num+=1
 
 #======================Rekomendasi Sistem=========================================
 
