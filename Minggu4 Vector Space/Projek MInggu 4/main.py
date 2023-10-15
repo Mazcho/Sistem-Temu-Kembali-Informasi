@@ -195,16 +195,16 @@ def user_input_title(judul_film):
                             st.write(i - 1, '.', judul_dari_index)
                             i += 1
 def filter_genre(genre):
-    genre = genre.title()
+    selected_genres_series = pd.Series(genre)
     genre_judul_vote = data_film[["title","genres","vote_average"]]
-    genres = genre_judul_vote[genre_judul_vote['genres'].str.contains(genre, regex=True)]
-    genres = genres.sort_values(by="vote_average",ascending=False)
-    st.dataframe(genres.reset_index(drop="index"), width=3000, height=2700)
-    i = 1
-    # for i in genre:
-    #     if i<50:
-    #         st.write(i - 1, '.', genre)
-    #         i += 1
+    
+    # Membuat kondisi yang akan digunakan dalam operasi pencocokan genre
+    condition = genre_judul_vote['genres'].apply(lambda x: any(genre in x for genre in selected_genres_series))
+    
+    # Menggunakan kondisi untuk melakukan pencocokan genre
+    genres = genre_judul_vote[condition]
+    genres = genres.sort_values(by="vote_average", ascending=False)
+    st.dataframe(genres.reset_index(drop=True), width=3000, height=2700)
 
 
 #====================================== End Of funct ===============================
@@ -250,11 +250,14 @@ if menuapp=="Cari":
         kolom = st.columns(5)
         num = 1
     with tab2:
-        genre = st.text_input("Masukan Judulmu disini",key="genre_film_input")
+        genre = st.multiselect(
+            'Cari Genre Kesukaan kamu',
+            ["War","Action","Mystery","TV","Comedy","Fantasy","Movie","Family","Horror",
+             "Foreign","Music","Thriller","Documentary","Drama","Western","Adventure","Fiction",
+             "History","Science","Animation","Crime","Romance"])
+        
         if genre != "":
             filter_genre(genre)
-        kolom = st.columns(5)
-        num = 1
 
     
 if menuapp=="Rekomendasi Film":
