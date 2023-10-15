@@ -1,8 +1,6 @@
 
-div.css-k7vsyb.e1nzilvr2{
+#ingin-nostalgia-dengan-film-lama-atau-ingin-nonton-film-yang-update-udah-buruan-segera-cari-di-dunia-film{
     text-align: center;
-    font-size: 30px;
-    padding: 100px;
 }
 
 .css-1qg05tj {
@@ -18,4 +16,12 @@ div.css-k7vsyb.e1nzilvr2{
     -webkit-box-align: center;
     align-items: center;
     text-align: center;
+}
+
+p, ol, ul, dl {
+    margin: 0px 0px 1rem;
+    padding: 0px;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: justify;
 }

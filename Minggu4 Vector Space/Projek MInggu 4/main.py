@@ -8,6 +8,7 @@ import contractions
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import difflib
+from googletrans import Translator, LANGUAGES
 import sys
 #=========================================end of library===========================
 
@@ -91,6 +92,11 @@ def recommend_similar_movies(input_film_title):
 
     return recommended_movies
 def user_input_title(judul_film):
+    ct1 = st.container()
+    ct2 = st.container()
+    ct3 = st.container()
+    col11,col12 = st.columns(2)
+    col21,col22,col23 = st.columns(3)
     judul_film = judul_film.lower()
     if judul_film == "off":
         st.write("Program selesai")
@@ -104,12 +110,10 @@ def user_input_title(judul_film):
 
     pencarian_judul_terdekat_dari_user_str = pencarian_judul_terdekat_dari_user_str.lower()
 
-    if not pencarian_judul_terdekat_dari_user:
-        st.write("Tidak ada judul film yang cocok ditemukan untuk " + judul_film)
-
     if judul_film != pencarian_judul_terdekat_dari_user_str:
-        yesNo = st.text_input("Maksud anda film: " + pencarian_judul_terdekat_dari_user_str + "? (yes/no)")
-        yesNo = yesNo.lower()
+        with ct1:
+            yesNo = st.text_input("Maksud anda film: " + pencarian_judul_terdekat_dari_user_str + "? (yes/no)")
+            yesNo = yesNo.lower()
         if yesNo == "yes":
             judul_paling_mirip = pencarian_judul_terdekat_dari_user[0]
             index_dari_judul_film = data_film[data_film.title == judul_paling_mirip]['index'].values[0]
@@ -119,17 +123,38 @@ def user_input_title(judul_film):
             for film in urutan_kemiripan_film:
                 index = film[0]
                 judul_dari_index = data_film[data_film.index == index]['title'].values[0]
-                if (i < 7):
-                    if (i == 1):
-                        st.write('Film anda ditemukan: ', judul_dari_index)
-                        i += 1
-                        st.write("=====================================")
-                        st.write("5 rekomendasi film yang serupa dengan " + judul_dari_index)
-                    else:
-                        st.write(i - 1, '.', judul_dari_index)
-                        i += 1
-        else:
-            st.write("Tidak ada judul film yang cocok ditemukan untuk " + judul_film)
+                overview_film = data_film[data_film.index == index]['overview'].values[0]
+                rating_vote = data_film[data_film.index == index]['vote_average'].values[0]
+                film_dirct = data_film[data_film.index == index]['director'].values[0]
+                if (i == 1):
+                    with ct2:
+                        with col11:
+                             st.image("image/pemandangan.png")
+                             st.write("Berikut adalah 30 film yang serupa dengan ",judul_dari_index)
+                        with col12:
+                            st.success('Film anda ditemukan!')
+                            st.write('Judul: ', judul_dari_index)
+                            st.write("Rating film : ",str(rating_vote),"/10")
+                            st.write("Director : ",film_dirct)
+                            st.write("Deskripsi film : ",overview_film)
+                            i += 1
+                else:
+                    if (i < 32):
+                        if(i<12):
+                            with col21:
+                                st.write(i - 1, '.', judul_dari_index)
+                                i += 1
+                        elif (i<22):
+                            with col22:
+                                st.write(i - 1, '.', judul_dari_index)
+                                i += 1
+                        elif (i<32):
+                            with col23:
+                                st.write(i - 1, '.', judul_dari_index)
+                                i += 1
+
+        elif yesNo=="no":
+            st.write("Tidak ada judul film yang cocok ditemukan untuk :  " + judul_film)
     else:
         judul_paling_mirip = pencarian_judul_terdekat_dari_user[0]
         index_dari_judul_film = data_film[data_film.title == judul_paling_mirip]['index'].values[0]
@@ -139,15 +164,36 @@ def user_input_title(judul_film):
         for film in urutan_kemiripan_film:
             index = film[0]
             judul_dari_index = data_film[data_film.index == index]['title'].values[0]
-            if (i < 7):
-                if (i == 1):
-                    st.write('Film anda ditemukan: ', judul_dari_index)
-                    i += 1
-                    st.write("=====================================")
-                    st.write("5 rekomendasi film yang serupa dengan " + judul_dari_index)
-                else:
-                    st.write(i - 1, '.', judul_dari_index)
-                    i += 1
+            overview_film = data_film[data_film.index == index]['overview'].values[0]
+            rating_vote = data_film[data_film.index == index]['vote_average'].values[0]
+            film_dirct = data_film[data_film.index == index]['director'].values[0]
+                
+            if (i == 1):
+                with ct2:
+                    with col11:
+                        st.image("image/pemandangan.png")
+                        st.write("Berikut adalah 30 film yang serupa dengan ",judul_dari_index)
+                    with col12:
+                        st.success('Film anda ditemukan!')
+                        st.write('Judul: ', judul_dari_index)
+                        st.write("Rating film : ",str(rating_vote),"/10")
+                        st.write("Director : ",film_dirct)
+                        st.write("Deskripsi film : ",overview_film)
+                        i += 1
+            else:
+                if (i < 32):
+                    if(i<12):
+                        with col21:
+                            st.write(i - 1, '.', judul_dari_index)
+                            i += 1
+                    elif (i<22):
+                        with col22:
+                            st.write(i - 1, '.', judul_dari_index)
+                            i += 1
+                    elif (i<32):
+                        with col23:
+                            st.write(i - 1, '.', judul_dari_index)
+                            i += 1
 #====================================== End Of funct ===============================
 
 
@@ -158,7 +204,7 @@ st.set_page_config(
     page_title="DF : Dunia Film",
     page_icon="🎬",
     layout="centered"
-)
+) 
 #==== End of seeting interface =========
 
 #==== Loading Css =================
@@ -172,35 +218,24 @@ with open('style.css')as f:
 #=======Layout=============
 
 with st.sidebar:
-    st.image('image\logo-removebg-preview (2).png')
-    menuapp = st.radio("MENU",["Home","Search","Author"])
+    st.image('image\movie-icon-15142.png',width=200)
+    menuapp = st.radio("MENU",["Cari","Rekomendasi Film"])
 
 #====End of Layout========
 
 
-
-
-
-
-
-
-#css file
-#interface
-
-
     
-if menuapp=="Home":
+if menuapp=="Cari":
     with st.container():
         st.header("Ingin Nostalgia dengan film lama? atau ingin nonton film yang update? Udah buruan segera cari di Dunia Film!")
     judul_film = st.text_input("Masukan Judulmu disini")
     if judul_film != "":
         user_input_title(judul_film)
-    st.write("Top 5 film berdasarkan vote")
     kolom = st.columns(5)
     num = 1
 
 
-if menuapp=="Search":
+if menuapp=="Rekomendasi Film":
     st.write("Top 5 Recomendation From User Vote")
     kolom = st.columns(5)
     num = 1
@@ -217,7 +252,13 @@ if menuapp=="Search":
             st.write("TOP ",str(num)," : ",title)
             num+=1
 
-    recommend_similar_movies(top_5_movie_by_average_score[0])
+    col1,col2,col3 = st.columns(3)
+    with col1:
+        recommend_similar_movies(top_5_movie_by_average_score[0])
+    with col2:
+        recommend_similar_movies(top_5_movie_by_average_score[1])
+    with col3:
+        recommend_similar_movies(top_5_movie_by_average_score[2])
 
 
 
