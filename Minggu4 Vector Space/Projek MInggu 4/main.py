@@ -194,6 +194,19 @@ def user_input_title(judul_film):
                         with col23:
                             st.write(i - 1, '.', judul_dari_index)
                             i += 1
+def filter_genre(genre):
+    genre = genre.title()
+    genre_judul_vote = data_film[["title","genres","vote_average"]]
+    genres = genre_judul_vote[genre_judul_vote['genres'].str.contains(genre, regex=True)]
+    genres = genres.sort_values(by="vote_average",ascending=False)
+    st.dataframe(genres.reset_index(drop="index"), width=3000, height=2700)
+    i = 1
+    # for i in genre:
+    #     if i<50:
+    #         st.write(i - 1, '.', genre)
+    #         i += 1
+
+
 #====================================== End Of funct ===============================
 
 
@@ -228,13 +241,22 @@ with st.sidebar:
 if menuapp=="Cari":
     with st.container():
         st.header("Ingin Nostalgia dengan film lama? atau ingin nonton film yang update? Udah buruan segera cari di Dunia Film!")
-    judul_film = st.text_input("Masukan Judulmu disini")
-    if judul_film != "":
-        user_input_title(judul_film)
-    kolom = st.columns(5)
-    num = 1
+    
+    tab1,tab2 = st.tabs(["Judul Film","Genre"])
+    with tab1:
+        judul_film = st.text_input("Masukan Judulmu disini",key="judul_film_input")
+        if judul_film != "":
+            user_input_title(judul_film)
+        kolom = st.columns(5)
+        num = 1
+    with tab2:
+        genre = st.text_input("Masukan Judulmu disini",key="genre_film_input")
+        if genre != "":
+            filter_genre(genre)
+        kolom = st.columns(5)
+        num = 1
 
-
+    
 if menuapp=="Rekomendasi Film":
     st.write("Top 5 Recomendation From User Vote")
     kolom = st.columns(5)
