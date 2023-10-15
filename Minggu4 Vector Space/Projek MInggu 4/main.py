@@ -201,6 +201,7 @@ if menuapp=="Home":
 
 
 if menuapp=="Search":
+    st.write("Top 5 Recomendation From User Vote")
     kolom = st.columns(5)
     num = 1
     list_top5_by_vote = ["image/stif_upper_lips.webp", "image/me_and_u_5_buck.webp","image\dancer-texas.webp","image/littlebigtop.webp","image/sardaarji.webp"]
