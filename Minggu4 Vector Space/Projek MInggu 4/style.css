@@ -1,0 +1,21 @@
+
+body {
+    background-image: url("image/stif_upper_lips.webp");
+    background-size: cover;
+    }
+
+
+div.css-k7vsyb.e1nzilvr2{
+    text-align: center;
+    font-size: 30px;
+}
+
+.css-uf99v8 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
+    -webkit-box-align: center;
+    align-items: center;
+    background: url("wallpaper.jpeg");
+}
