@@ -1,4 +1,5 @@
-::Projek Tugas Ahkir STKI : ChatBot Bantuan Kesehatan Mental Remaja dengan Model Sequential::
+# <p align="center">Projek Tugas Ahkir STKI : ChatBot Bantuan Kesehatan Mental Remaja dengan Model Sequential</p>
+
 ![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/0840afcb-0e70-4cf9-853c-8f9a7fed62a5)
 
 Kesehatan mental adalah kondisi dimana batin kita berada dalam keadaan tentram dan tenang, sehingga memungkinkan kita untuk menikmati kehidupan sehari hari, dan menghargai orang lain disekitar. Kesehatan mental yang baik akan mempengaruhi jalan lika liku hidup kita. Lalu bagaimana jika kesehatan mental kita terganggu, pastinya kita tidak bisa menikmati hidup ini dengan tenang. Mulai dari selalu cemas, _overtingking_, perasaan takut dan lain sebagainya
