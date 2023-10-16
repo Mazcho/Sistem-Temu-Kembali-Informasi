@@ -1,4 +1,4 @@
-Halo ! ini adalah tampilan dari hasil deploymnet model saya
+Halo ! ini adalah tampilan dari hasil deploymnet model saya :D
 
 ![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/dbc4183d-c834-4f2d-9c86-51df46a72d25)
 
