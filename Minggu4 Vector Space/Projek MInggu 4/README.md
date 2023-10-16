@@ -1,5 +1,4 @@
-![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/9889b833-04fa-4f31-b23a-552334275127)
-
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/0840afcb-0e70-4cf9-853c-8f9a7fed62a5)
 
 Projek Tugas Ahkir STKI : ChatBot Bantuan Kesehatan Mental Remaja dengan Model Sequential
 
