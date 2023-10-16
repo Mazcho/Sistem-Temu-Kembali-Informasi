@@ -8,7 +8,6 @@ import contractions
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import difflib
-from googletrans import Translator, LANGUAGES
 import sys
 #=========================================end of library===========================
 
@@ -55,14 +54,14 @@ kemiripan = cosine_similarity(fitur_vectors)
 
 
 #==================================Funct Rekomendasi Film===========================
-def rekomendasi_film_aksi(input_genre):
+def rekomendasi_film_genre(input_genre):
     # Membuat kondisi yang akan digunakan dalam operasi pencocokan genre
-    condition = data_film['Action'].apply(lambda x: any(genre in x for genre in input_genre))
+    condition = data_film['genres'].apply(lambda x: any(genre in x for genre in input_genre))
 
     # Menggunakan kondisi untuk melakukan pencocokan genre
     genres = data_film[condition]
-    genres = genres.sort_values(by="vote_average", ascending=False)
-    genres = genres["title"][0]
+    genres = genres.sort_values(by="vote_count", ascending=False)
+    genres = genres["title"].values[0]
 
     input_film_title = genres.lower()
     if input_film_title == "off":
@@ -70,32 +69,18 @@ def rekomendasi_film_aksi(input_genre):
         st.stop()
     list_judul_film_dari_dataset = data_film["title"].tolist()
     pencarian_judul_terdekat_dari_user = difflib.get_close_matches(input_film_title, list_judul_film_dari_dataset)
-
-    if not pencarian_judul_terdekat_dari_user:
-        return ["Tidak ada judul film yang cocok ditemukan untuk " + input_film_title]
-
-    pencarian_judul_terdekat_dari_user_str = pencarian_judul_terdekat_dari_user[0].lower()
-
-    if input_film_title != pencarian_judul_terdekat_dari_user_str:
-        return ["Tidak ada judul film yang cocok ditemukan untuk " + input_film_title]
-
     judul_paling_mirip = pencarian_judul_terdekat_dari_user[0]
     index_dari_judul_film = data_film[data_film.title == judul_paling_mirip]['index'].values[0]
     kemiripan_skor = list(enumerate(kemiripan[index_dari_judul_film]))
     urutan_kemiripan_film = sorted(kemiripan_skor, key=lambda x: x[1], reverse=True)
     recommended_movies = []
-    i = 1
-
+    i = 2
     for film in urutan_kemiripan_film:
         index = film[0]
         judul_dari_index = data_film[data_film.index == index]['title'].values[0]
         if (i < 7):
-            if (i == 1):
-                st.write('Film yang serupa dengan : ', judul_dari_index)
-                i += 1
-            else:
-                st.write(i - 1, '.', judul_dari_index)
-                i += 1
+            st.write(i - 1, '.', judul_dari_index)
+            i += 1
 
     return recommended_movies
 
@@ -169,6 +154,7 @@ def user_input_title(judul_film):
                 overview_film = data_film[data_film.index == index]['overview'].values[0]
                 rating_vote = data_film[data_film.index == index]['vote_average'].values[0]
                 film_dirct = data_film[data_film.index == index]['director'].values[0]
+                genre_film = data_film[data_film.index == index]["genres"].values[0]
                 if (i == 1):
                     with ct2:
                         with col11:
@@ -179,6 +165,7 @@ def user_input_title(judul_film):
                             st.write('Judul: ', judul_dari_index)
                             st.write("Rating film : ",str(rating_vote),"/10")
                             st.write("Director : ",film_dirct)
+                            st.write("Genre : ",genre_film)
                             st.write("Deskripsi film : ",overview_film)
                             i += 1
                 else:
@@ -210,7 +197,7 @@ def user_input_title(judul_film):
             overview_film = data_film[data_film.index == index]['overview'].values[0]
             rating_vote = data_film[data_film.index == index]['vote_average'].values[0]
             film_dirct = data_film[data_film.index == index]['director'].values[0]
-                
+            genre_film = data_film[data_film.index == index]["genres"].values[0]   
             if (i == 1):
                 with ct2:
                     with col11:
@@ -221,6 +208,7 @@ def user_input_title(judul_film):
                         st.write('Judul: ', judul_dari_index)
                         st.write("Rating film : ",str(rating_vote),"/10")
                         st.write("Director : ",film_dirct)
+                        st.write("Genre : ",genre_film)
                         st.write("Deskripsi film : ",overview_film)
                         i += 1
             else:
@@ -304,7 +292,7 @@ if menuapp=="Cari":
 
     
 if menuapp=="Rekomendasi Film":
-    st.write("Top 5 Recomendation From User Vote")
+    st.write("Top 5 Rekomendasi film dari Rating")
     kolom = st.columns(5)
     num = 1
     list_top5_by_vote = ["image/stif_upper_lips.webp", "image/me_and_u_5_buck.webp","image\dancer-texas.webp","image/littlebigtop.webp","image/sardaarji.webp"]
@@ -323,26 +311,17 @@ if menuapp=="Rekomendasi Film":
     col1,col2,col3 = st.columns(3)
     with col1:
         recommend_similar_movies(top_5_movie_by_average_score[0])
+        st.write("Rekomendasi Film Action")
+        rekomendasi_film_genre(input_genre="Action")
     with col2:
         recommend_similar_movies(top_5_movie_by_average_score[1])
+        st.write("Rekomendasi Film Horror")
+        rekomendasi_film_genre(input_genre="Horror")
     with col3:
         recommend_similar_movies(top_5_movie_by_average_score[2])
+        st.write("Rekomendasi Film Drama")
+        rekomendasi_film_genre(input_genre="Drama")
     
-    st.write("Top 5 rekomendasi dari genre: Aksi")
-    kolom = st.columns(5)
-    num = 1
-    list_top5_by_vote = ["image/stif_upper_lips.webp", "image/me_and_u_5_buck.webp","image\dancer-texas.webp","image/littlebigtop.webp","image/sardaarji.webp"]
-
-
-    top5_movie = data_film[["title", "vote_average"]]
-    top_5_movie_by_average_score = top5_movie.sort_values(by="vote_average", ascending=False)
-    top_5_movie_by_average_score = top_5_movie_by_average_score["title"].head().to_list()
-
-    for col_num, (title, image_path) in enumerate(zip(top_5_movie_by_average_score, list_top5_by_vote), start=1):
-        with kolom[col_num - 1]:
-            st.image(image_path)
-            st.write("TOP ",str(num)," : ",title)
-            num+=1
 
 #======================Rekomendasi Sistem=========================================
 
