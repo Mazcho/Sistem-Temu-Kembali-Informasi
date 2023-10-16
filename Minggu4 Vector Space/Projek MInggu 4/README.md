@@ -2,10 +2,9 @@ Projek Tugas Ahkir STKI : ChatBot Bantuan Kesehatan Mental Remaja
 
 Kesehatan mental adalah kondisi dimana batin kita berada dalam keadaan tentram dan tenang, sehingga memungkinkan kita untuk menikmati kehidupan sehari hari, dan menghargai orang lain disekitar.
 Gangguan kesehatan mental dapat memiliki berbagai gejala dan ciri-ciri yang bervariasi tergantung pada jenis gangguan, tingkat keparahan, dan individual yang terpengaruh. Beberapa ciri umum gangguan kesehatan mental meliputi:
+1. Perubahan suasana hati: Perasaan sedih, gelisah, marah, atau hampa yang berlebihan dan berkepanjangan.
 
-Perubahan suasana hati: Perasaan sedih, gelisah, marah, atau hampa yang berlebihan dan berkepanjangan.
-
-Gangguan tidur: Kesulitan tidur (insomnia) atau tidur berlebihan (hipersomnia), terbangun di malam hari, mimpi buruk, atau gangguan dalam pola tidur.
+2. Gangguan tidur: Kesulitan tidur (insomnia) atau tidur berlebihan (hipersomnia), terbangun di malam hari, mimpi buruk, atau gangguan dalam pola tidur.
 
 Perubahan dalam nafsu makan: Penurunan atau peningkatan berat badan yang tidak wajar, perubahan dalam pola makan, atau gangguan makan seperti anoreksia, bulimia, atau binge-eating disorder.
 
