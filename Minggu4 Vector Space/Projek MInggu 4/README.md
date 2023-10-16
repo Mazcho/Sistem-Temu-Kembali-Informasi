@@ -1,4 +1,4 @@
-Projek Tugas Ahkir STKI : ChatBot Bantuan Kesehatan Mental Remaja
+Projek Tugas Ahkir STKI : ChatBot Bantuan Kesehatan Mental Remaja dengan Model Sequential
 
 Kesehatan mental adalah kondisi dimana batin kita berada dalam keadaan tentram dan tenang, sehingga memungkinkan kita untuk menikmati kehidupan sehari hari, dan menghargai orang lain disekitar. Kesehatan mental yang baik akan mempengaruhi jalan lika liku hidup kita. Lalu bagaimana jika kesehatan mental kita terganggu, pastinya kita tidak bisa menikmati hidup ini dengan tenang. Mulai dari selalu cemas, _overtingking_, perasaan takut dan lain sebagainya
 Gangguan kesehatan mental dapat memiliki berbagai gejala dan ciri-ciri yang bervariasi tergantung pada jenis gangguan, tingkat keparahan, dan individual yang terpengaruh. Beberapa ciri umum gangguan kesehatan mental meliputi:
@@ -14,14 +14,37 @@ Gangguan kesehatan mental dapat memiliki berbagai gejala dan ciri-ciri yang berv
 10. Perasaan putus asa: Perasaan putus asa, pikiran tentang kematian, atau bahkan upaya bunuh diri.
 11. Perubahan dalam persepsi realitas: Pada beberapa jenis gangguan seperti skizofrenia, seseorang mungkin mengalami halusinasi, delusi, atau gangguan persepsi yang lain.
 
-Penting untuk diingat bahwa tidak semua ciri-ciri ini akan muncul pada setiap individu dengan gangguan kesehatan mental, dan gejalanya dapat berbeda-beda. Jika Anda atau seseorang yang Anda kenal mengalami gejala gangguan kesehatan mental, sangat penting untuk mencari bantuan dari profesional kesehatan mental. Terapi, obat-obatan, dan dukungan sosial dapat membantu mengelola gangguan kesehatan mental. Jangan ragu untuk mencari bantuan jika Anda merasa memerlukannya.
+Beberapa contoh hal terburuk yang dapat terjadi ketika gangguan kesehatan mental tidak ditangani atau dikelola dengan baik:
 
+1. Bunuh diri: Tindakan bunuh diri adalah risiko terparah yang dapat muncul ketika seseorang mengalami gangguan kesehatan mental yang parah. Ini termasuk perasaan yang kuat untuk mengakhiri hidup.
+2. Self-harm (melukai diri sendiri): Self-harm adalah tindakan merusak fisik diri sendiri, seperti memotong diri, membakar diri, atau melukai diri sendiri dengan tujuan untuk meredakan rasa sakit emosional.
 
-Halo ! ini adalah tampilan dari hasil deploymnet model saya :D
+Maka dari itu, penulis ingin membuat sebuah chat bot bantuan kesehatan mental remaja, yang dimana chat bot ini setidaknya bisa membantu remaja merasa lebih tenang, karena pada dasarnya tidak smua orang bisa menceritakaan apa yang dia rasakan. Tidak semua orang dapat mengungkapkan isi di otaknya di depan umum, maupun orang terdekatnya, karena mengalami trust issue.
 
-![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/dbc4183d-c834-4f2d-9c86-51df46a72d25)
+Untuk workflow pengerjaan chat bot ini ada
+1. collecting data
+2. data cleansing
+3. Preprocesing data ( tokenizer)
+4. Modeling ( tensorflow "sequential")
+5. Percobaan
+6. Evaluasi
 
-![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/daf98e63-3b1e-4215-94e9-eb15e764b86b)
+Pada chat bot ini, akan digunakan model "Sequential" dari Tensorflow.
+model Sequential dengan beberapa lapisan yang umum digunakan dalam tugas pemrosesan bahasa alami (Natural Language Processing, NLP). Berikut adalah ringkasan dari apa yang akan peneliti lakukan:
 
-![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/7af734c7-7020-48f7-ab4b-a30a5826321e)
+1. Lapisan Input: Peneliti mendefinisikan lapisan input dengan bentuk yang sesuai. Ini adalah titik awal untuk data masukan model peneliti.
+2. Lapisan Embedding: Peneliti menggunakan lapisan Embedding untuk mengubah token-token masukan menjadi vektor numerik yang dapat dipahami oleh model. mask_zero=True memungkinkan model untuk mengabaikan token nol.
+3. Lapisan LSTM: Peneliti menggunakan tiga lapisan LSTM berturut-turut. Lapisan LSTM digunakan untuk memahami konteks dari teks masukan. Dengan pengaturan return_sequences=True, lapisan LSTM terakhir mengembalikan urutan output sekuensial, yang dapat berguna dalam tugas NLP tertentu.
+4. Lapisan LayerNormalization: Lapisan LayerNormalization digunakan untuk mengstabilkan proses pelatihan dan meningkatkan konvergensi model.
+5. Lapisan Dense: Apeneliti memiliki beberapa lapisan Dense untuk memproses representasi yang dihasilkan oleh lapisan LSTM. Ini termasuk lapisan Dense dengan fungsi aktivasi ReLU dan dropout untuk mencegah overfitting.
+6. Kompilasi Model: Peneliti mengompilasi model dengan optimisasi 'adam' dan fungsi kerugian 'sparse_categorical_crossentropy'. Anda juga memantau metrik akurasi selama pelatihan.
+
+Alasan menggunakan model Sequential :
+1. Pengenalan Pola Teks: Jika Anda ingin memahami atau mengenali pola-pola tertentu dalam teks atau urutan data teks, seperti pengenalan pola dalam kalimat atau paragraf, model Sequential dapat digunakan untuk memodelkan urutan data tersebut dan mengidentifikasi pola yang relevan.
+
+2. Klasifikasi Teks: Jika Anda ingin mengklasifikasikan teks ke dalam kategori tertentu berdasarkan pola yang terdapat dalam kolom "patterns," seperti membedakan pertanyaan dari pernyataan atau mengklasifikasikan masukan ke dalam kategori yang sesuai, model Sequential cocok digunakan.
+
+3. Generasi Teks: Jika Anda ingin menghasilkan teks berkelanjutan sebagai tanggapan terhadap pola yang ada dalam kolom "patterns," seperti merespons pertanyaan dengan jawaban yang sesuai dalam kolom "responses," model Sequential bisa digunakan untuk membuat model generatif.
+
+4. Pengolahan Urutan Data: Jika Anda ingin mengolah atau menganalisis data yang memiliki struktur urutan, seperti mengenali urutan yang memiliki pola tertentu atau melakukan tugas pemrosesan bahasa terkait urutan data teks, model Sequential sangat berguna.
 
