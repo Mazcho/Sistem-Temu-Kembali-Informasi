@@ -33,6 +33,9 @@ Untuk workflow pengerjaan chat bot ini ada
 Pada chat bot ini, akan digunakan model "Sequential" dari Tensorflow.
 model Sequential dengan beberapa lapisan yang umum digunakan dalam tugas pemrosesan bahasa alami (Natural Language Processing, NLP). Berikut adalah ringkasan dari apa yang akan peneliti lakukan:
 
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/ca498efd-31bf-43c0-bac1-4ea2ed0bfb30)
+
+
 1. Lapisan Input: Peneliti mendefinisikan lapisan input dengan bentuk yang sesuai. Ini adalah titik awal untuk data masukan model peneliti.
 2. Lapisan Embedding: Peneliti menggunakan lapisan Embedding untuk mengubah token-token masukan menjadi vektor numerik yang dapat dipahami oleh model. mask_zero=True memungkinkan model untuk mengabaikan token nol.
 3. Lapisan LSTM: Peneliti menggunakan tiga lapisan LSTM berturut-turut. Lapisan LSTM digunakan untuk memahami konteks dari teks masukan. Dengan pengaturan return_sequences=True, lapisan LSTM terakhir mengembalikan urutan output sekuensial, yang dapat berguna dalam tugas NLP tertentu.
