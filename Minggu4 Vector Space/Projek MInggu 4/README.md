@@ -41,7 +41,7 @@ model Sequential dengan beberapa lapisan yang umum digunakan dalam tugas pemrose
 3. Lapisan LSTM: Peneliti menggunakan tiga lapisan LSTM berturut-turut. Lapisan LSTM digunakan untuk memahami konteks dari teks masukan. Dengan pengaturan return_sequences=True, lapisan LSTM terakhir mengembalikan urutan output sekuensial, yang dapat berguna dalam tugas NLP tertentu.
 4. Lapisan LayerNormalization: Lapisan LayerNormalization digunakan untuk mengstabilkan proses pelatihan dan meningkatkan konvergensi model.
 5. Lapisan Dense: Apeneliti memiliki beberapa lapisan Dense untuk memproses representasi yang dihasilkan oleh lapisan LSTM. Ini termasuk lapisan Dense dengan fungsi aktivasi ReLU dan dropout untuk mencegah overfitting.
-6. Kompilasi Model: Peneliti mengompilasi model dengan optimisasi 'adam' dan fungsi kerugian 'sparse_categorical_crossentropy'. Anda juga memantau metrik akurasi selama pelatihan.
+6. Kompilasi Model: Peneliti mengompilasi model dengan optimisasi 'adam' dan fungsi kerugian 'sparse_categorical_crossentropy'. peneliti dapat melihat akurasi setiap progresnya
 
 Alasan menggunakan model Sequential :
 1. Pengenalan Pola Teks: Jika Anda ingin memahami atau mengenali pola-pola tertentu dalam teks atau urutan data teks, seperti pengenalan pola dalam kalimat atau paragraf, model Sequential dapat digunakan untuk memodelkan urutan data tersebut dan mengidentifikasi pola yang relevan.
