@@ -17,7 +17,6 @@ Gangguan kesehatan mental dapat memiliki berbagai gejala dan ciri-ciri yang berv
 11. Perubahan dalam persepsi realitas: Pada beberapa jenis gangguan seperti skizofrenia, seseorang mungkin mengalami halusinasi, delusi, atau gangguan persepsi yang lain.
 
 Beberapa contoh hal terburuk yang dapat terjadi ketika gangguan kesehatan mental tidak ditangani atau dikelola dengan baik:
-
 1. Bunuh diri: Tindakan bunuh diri adalah risiko terparah yang dapat muncul ketika seseorang mengalami gangguan kesehatan mental yang parah. Ini termasuk perasaan yang kuat untuk mengakhiri hidup.
 2. Self-harm (melukai diri sendiri): Self-harm adalah tindakan merusak fisik diri sendiri, seperti memotong diri, membakar diri, atau melukai diri sendiri dengan tujuan untuk meredakan rasa sakit emosional.
 
