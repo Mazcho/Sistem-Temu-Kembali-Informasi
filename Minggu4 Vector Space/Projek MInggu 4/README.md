@@ -17,7 +17,6 @@ Gangguan kesehatan mental dapat memiliki berbagai gejala dan ciri-ciri yang berv
 11. Perubahan dalam persepsi realitas: Pada beberapa jenis gangguan seperti skizofrenia, seseorang mungkin mengalami halusinasi, delusi, atau gangguan persepsi yang lain.
 
 Beberapa contoh hal terburuk yang dapat terjadi ketika gangguan kesehatan mental tidak ditangani atau dikelola dengan baik:
-
 1. Bunuh diri: Tindakan bunuh diri adalah risiko terparah yang dapat muncul ketika seseorang mengalami gangguan kesehatan mental yang parah. Ini termasuk perasaan yang kuat untuk mengakhiri hidup.
 2. Self-harm (melukai diri sendiri): Self-harm adalah tindakan merusak fisik diri sendiri, seperti memotong diri, membakar diri, atau melukai diri sendiri dengan tujuan untuk meredakan rasa sakit emosional.
 
@@ -34,12 +33,15 @@ Untuk workflow pengerjaan chat bot ini ada
 Pada chat bot ini, akan digunakan model "Sequential" dari Tensorflow.
 model Sequential dengan beberapa lapisan yang umum digunakan dalam tugas pemrosesan bahasa alami (Natural Language Processing, NLP). Berikut adalah ringkasan dari apa yang akan peneliti lakukan:
 
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/ca498efd-31bf-43c0-bac1-4ea2ed0bfb30)
+
+
 1. Lapisan Input: Peneliti mendefinisikan lapisan input dengan bentuk yang sesuai. Ini adalah titik awal untuk data masukan model peneliti.
 2. Lapisan Embedding: Peneliti menggunakan lapisan Embedding untuk mengubah token-token masukan menjadi vektor numerik yang dapat dipahami oleh model. mask_zero=True memungkinkan model untuk mengabaikan token nol.
 3. Lapisan LSTM: Peneliti menggunakan tiga lapisan LSTM berturut-turut. Lapisan LSTM digunakan untuk memahami konteks dari teks masukan. Dengan pengaturan return_sequences=True, lapisan LSTM terakhir mengembalikan urutan output sekuensial, yang dapat berguna dalam tugas NLP tertentu.
 4. Lapisan LayerNormalization: Lapisan LayerNormalization digunakan untuk mengstabilkan proses pelatihan dan meningkatkan konvergensi model.
 5. Lapisan Dense: Apeneliti memiliki beberapa lapisan Dense untuk memproses representasi yang dihasilkan oleh lapisan LSTM. Ini termasuk lapisan Dense dengan fungsi aktivasi ReLU dan dropout untuk mencegah overfitting.
-6. Kompilasi Model: Peneliti mengompilasi model dengan optimisasi 'adam' dan fungsi kerugian 'sparse_categorical_crossentropy'. Anda juga memantau metrik akurasi selama pelatihan.
+6. Kompilasi Model: Peneliti mengompilasi model dengan optimisasi 'adam' dan fungsi kerugian 'sparse_categorical_crossentropy'. peneliti dapat melihat akurasi setiap progresnya
 
 Alasan menggunakan model Sequential :
 1. Pengenalan Pola Teks: Jika Anda ingin memahami atau mengenali pola-pola tertentu dalam teks atau urutan data teks, seperti pengenalan pola dalam kalimat atau paragraf, model Sequential dapat digunakan untuk memodelkan urutan data tersebut dan mengidentifikasi pola yang relevan.
