@@ -11,6 +11,7 @@ Kesehatan mental adalah kondisi seorang individu terbebas dari segala bentuk gej
 Rumusan Masalah
 1.	Apakah model Sequence dapat melakukan interaksi dengan baik dari inputan user yang diberikan?
 2.	Bagaimana peforma yang dihasilkan dari model Sequence ?
+
 Tinjauan Studi
 Pada penelitian yang dilakukan oleh Yogi (5) Sistem Question and Answering (QA) merupakan permasalahan dalam pemrosesan bahasa alami yang dapat digunakan sebagai sistem dialog dan chatbot. Dapat digunakan sebagai layanan pelanggan yang dapat memberikan respon kepada pelanggan dengan cepat. Sistem QA menerima masukan berupa kalimat dan menghasilkan kalimat prediktif yang merupakan respon terhadap masukan tersebut. model tersebut menghasilkan skor BLEU yang cukup tinggi yaitu 41,04. Selain itu, penelitian yang dilakukan oleh (6) aplikasi messenger sebagai penghubung bagi penderita masalah mental terbukti dapat mengatasi masalah gangguan mental pada remaja. Penelitian lainnya yang dilakukan Yulius Denny (7) menyatakan bahwa model LSTM Sequential dapat merespon inputan dari user dengan baik dalam Bahasa Indonesia.
 DATASET
