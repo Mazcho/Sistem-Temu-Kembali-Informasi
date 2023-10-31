@@ -1,4 +1,4 @@
-Implementasi Sequential LSTM Model dalam Chatbot Kesehatan Mental Remaja Menggunakan TensorFlow
+# <p align="center">Implementasi Sequential LSTM Model dalam Chatbot Kesehatan Mental Remaja Menggunakan TensorFlow
 Nicholaus Verdhy Putranto|| A11.2020.12447
 
 Ringkasan
@@ -22,7 +22,7 @@ Pertama dilakukan penerjemahan Bahasa dari inggris ke Indonesia.Lalu data dimpor
 Metode
 Metode yang digunakan dalam penelitian ini adalah untuk membangun sebuah model deep learning menggunakan TensorFlow dan Keras untuk tugas klasifikasi teks. Pertama, library TensorFlow dan modul-modul Keras diimpor. Selanjutnya, sebuah objek model Sequential dibentuk, yang digunakan untuk mendefinisikan arsitektur model secara berurutan. Model dimulai dengan layer Input, yang menerima input data dengan bentuk yang sesuai. Kemudian, layer Embedding digunakan untuk mengubah kata-kata menjadi representasi vektor numerik, sebuah langkah penting dalam pemrosesan teks. Tiga layer LSTM berturut-turut dengan masing-masing 32 unit ditambahkan ke model. LSTM (Long Short-Term Memory) digunakan untuk memproses data dalam urutan, seperti teks. Dua dari tiga layer LSTM memiliki parameter `return_sequences=True`, yang berarti outputnya adalah urutan sekuensial. Selama proses pembangunan model, juga digunakan layer Normalisasi untuk meningkatkan stabilitas dan percepatan pelatihan. Layer Dense digunakan untuk menambahkan lapisan-lapisan terhubung penuh dengan aktivasi ReLU, yang akan menghasilkan output akhir berdasarkan pola yang dipelajari oleh model. Setelah model dibuat, dilakukan pengujian 
 Evaluasi
-Evaluasi yang ditampilkan dari penelitian ini adalah akurasi dari kecocokan antara user input dengna chat bot.
+Evaluasi yang ditampilkan dari penelitian ini adalah akurasi dari kecocokan antara user input dengna chat bot.</p>
 
 UI/UX
 ![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/157ff643-9207-4b38-932c-d476b576b3ba)
