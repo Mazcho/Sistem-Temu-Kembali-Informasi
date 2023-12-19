@@ -18,10 +18,6 @@ Pada penelitian yang dilakukan oleh Yogi (5) Sistem Question and Answering (QA) 
 DATASET
 Data set yang didapat bersumber dari Kaggle dan dataset bersifat public. Dataset yang diadapat terdapat 3 kolom dan 80 baris. Kolom tersebut diantaranya ada kolom tag, patterns, dan responses. Untuk kolom tag menjelaskan penegelompokan dari hasil pattern dan responses. Kolom tag beriskan greeting, morning, afternoon, night, dan lainnya. Lalu untuk kolom patterns, memuat kalimat dan kata kata yang biasanya diinputkan oleh user, sedangkan responses adalah hasil respon dari kalimat/ kata yang diberikan dari kolom pattern.
 
-METODE YANG DIGUNAKAN
-
-Pemrosesan awal
-
 # Tentang Kumpulan Data
 
 Untuk mengambil datanya saya ambil dari situs data publik yaitu dari Kaggle. Halaman ini menyajikan data dalam format .json yang berisi obrolan umum dan pengetahuan mengenai kesehatan mental. Ada link untuk Dataset : https://www.kaggle.com/datasets/elvis23/mental-health-conversational-data/data
@@ -41,7 +37,7 @@ Hal ini untuk memudahkan model melatih data yang kami berikan untuk memberikan r
 Gambar 5.0 Tokenizer di patternsTokenizers digunakan untuk mengonversi teks menjadi rangkaian angka yang dapat dipahami oleh model deep learning. Proses ini melibatkan langkah-langkah seperti tokenisasi (memecah teks menjadi kata atau token), mengubah kata menjadi indeks, dan sebagainya. Setelah tokenizer dilatih, kita dapat menggunakannya untuk mengubah setiap teks baru menjadi urutan angka yang sesuai.
 
 
-Metode
+# Metode
 
 Model yang saya rancang adalah Model LSTM Sequential, yang didasarkan pada tiga lapisan LSTM yang berurutan. Setiap lapisan LSTM terdiri dari 32 unit, dirancang untuk menangkap ketergantungan jangka panjang dalam rangkaian data teks. Keberadaan lapisan normalisasi setelah setiap lapisan LSTM memastikan stabilitas dalam pembelajaran, memungkinkan model saya lebih memahami pola kompleks dalam rangkaian data.
 
@@ -52,7 +48,7 @@ Dalam proses kompilasi, model saya menggunakan fungsi kerugian sparse_categorica
 
 Secara keseluruhan, model saya dirancang untuk memahami dan mengekstrak pola kompleks dalam rangkaian data teks, memberikan kemampuan optimal dalam tugas klasifikasi atau prediksi yang memerlukan pemahaman tentang ketergantungan jangka panjang. Proses pelatihan model menggunakan fungsi kerugian sparse_categorical_crossentropy dan pengoptimal Adam untuk mengoptimalkan parameter model. Dengan adanya callback EarlyStopping, model saya akan berhenti berlatih jika tidak ada peningkatan akurasi setelah beberapa periode tertentu. Model ini dapat diimplementasikan dalam sistem chatbot untuk memberikan respons yang kontekstual dan relevan terhadap masukan pengguna. 
 
-Evaluasi
+# Evaluasi
 
 Evaluasi yang ditampilkan dari penelitian ini adalah akurasi dari kecocokan antara user input dengna chat bot.
 
