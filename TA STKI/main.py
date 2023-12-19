@@ -1,4 +1,4 @@
-# Load Library
+# awal load Library=============================================================================================================
 import re  # Import library regular expression untuk manipulasi teks
 import random  # Import library random untuk pemilihan respons acak
 import numpy as np  # Import library numpy untuk operasi numerik
@@ -9,7 +9,9 @@ from tensorflow.keras.models import load_model  # Import fungsi load_model dari 
 from tensorflow.keras.preprocessing.text import Tokenizer  # Import Tokenizer untuk memproses teks
 from tensorflow.keras.preprocessing.sequence import pad_sequences  # Import pad_sequences untuk padding urutan teks
 from sklearn.preprocessing import LabelEncoder  # Import LabelEncoder untuk mengonversi label kelas
-# end of Import Library
+# ahkir Import Library==========================================================================================================
+
+# awal Seting Data =======================================================================================================
 
 # Memuat data dari JSON
 with open('intents copy.json', 'r') as f:
@@ -42,11 +44,17 @@ y = lbl_enc.fit_transform(df['tag'])  # Mengonversi label kelas menjadi angka
 model_path = 'my_model.keras'  # Perbarui dengan path yang benar
 loaded_model = load_model(model_path)  # Memuat model yang telah dilatih
 
+# Ahkir dari Seting Data =======================================================================================================
+
+
+# Aplikasi Streamlit ===========================================================================================================
+
 response_user = []  # List untuk menyimpan respons dari pengguna
 response_bot = []  # List untuk menyimpan respons dari bot
 
-# Aplikasi Streamlit
+
 st.title("Demo Chatbot")  # Menampilkan judul aplikasi chatbot
+
 
 # menampilkan hasil histori dari chat sebelumnya
 if "messages" not in st.session_state:
