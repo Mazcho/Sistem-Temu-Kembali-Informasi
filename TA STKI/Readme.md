@@ -23,7 +23,10 @@ Data set yang didapat bersumber dari Kaggle dan dataset bersifat public. Dataset
 Untuk mengambil datanya saya ambil dari situs data publik yaitu dari Kaggle. Halaman ini menyajikan data dalam format .json yang berisi obrolan umum dan pengetahuan mengenai kesehatan mental. Ada link untuk Dataset : https://www.kaggle.com/datasets/elvis23/mental-health-conversational-data/data
 
 # Fitur Kumpulan Data
-Gambar 2.0 Fitur Dataset Pada data set ini terdapat 3 fitur. Ini termasuk tag, pola, dan tanggapan. Tag merupakan penanda data teks untuk menandai teks tersebut termasuk dalam suatu kategori (salam, salam pagi, siang, sore, minta tolong, dan sebagainya). Pola adalah pola yang diberikan oleh pengguna untuk kategori tersebut. Saat pengguna mengetik selamat pagi, ia akan memasukkan penanda tag di mesin pembelajaran nantinya. Dan yang terakhir adalah respon, respon disini adalah memberikan respon terhadap masukan dari pengguna mengenai apa yang pengguna berikan dari komputer. Dan sasaran penelitiannya adalah tag, dan variabel prediktornya adalah pola dan respon
+
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/aa40b101-9fc9-4440-b3fc-2c2734e11a14)
+
+Fitur Dataset Pada data set ini terdapat 3 fitur. Ini termasuk tag, pola, dan tanggapan. Tag merupakan penanda data teks untuk menandai teks tersebut termasuk dalam suatu kategori (salam, salam pagi, siang, sore, minta tolong, dan sebagainya). Pola adalah pola yang diberikan oleh pengguna untuk kategori tersebut. Saat pengguna mengetik selamat pagi, ia akan memasukkan penanda tag di mesin pembelajaran nantinya. Dan yang terakhir adalah respon, respon disini adalah memberikan respon terhadap masukan dari pengguna mengenai apa yang pengguna berikan dari komputer. Dan sasaran penelitiannya adalah tag, dan variabel prediktornya adalah pola dan respon
 
 # Kondisi Kumpulan Data
 Kumpulan data ini berisi 237 data percakapan. Tidak ada nilai yang hilang dari data ini. Namun saya menambahkan beberapa data tambahan di dalamnya agar percakapan antara robot dan pengguna menjadi lebih baik. Dari 237 data menjadi 360 data. Data yang diberikan mengenai pemecahan masalah menambah pengetahuan mengenai topik kesehatan mental.
@@ -32,6 +35,7 @@ Kumpulan data ini berisi 237 data percakapan. Tidak ada nilai yang hilang dari d
 Pertama, panggil data berformat .json ke dalam kode editor, lalu kita ubah menjadi Dataframe
 Gambar 3.0 Load format .json dan konversikan ke Dataframe Kedua, kita akan pisahkan semua nilai yang ada di setiap kolom dan akan kita masukkan ke dalam setiap fitur yang sudah ditentukan.
 
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/0189391b-6ba8-4212-9a6b-aa4d35ff02ee)
 
 Hal ini untuk memudahkan model melatih data yang kami berikan untuk memberikan respons dari pengguna
 Gambar 5.0 Tokenizer di patternsTokenizers digunakan untuk mengonversi teks menjadi rangkaian angka yang dapat dipahami oleh model deep learning. Proses ini melibatkan langkah-langkah seperti tokenisasi (memecah teks menjadi kata atau token), mengubah kata menjadi indeks, dan sebagainya. Setelah tokenizer dilatih, kita dapat menggunakannya untuk mengubah setiap teks baru menjadi urutan angka yang sesuai.
