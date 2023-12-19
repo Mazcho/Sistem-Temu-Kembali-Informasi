@@ -38,7 +38,10 @@ Gambar 3.0 Load format .json dan konversikan ke Dataframe Kedua, kita akan pisah
 ![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/0189391b-6ba8-4212-9a6b-aa4d35ff02ee)
 
 Hal ini untuk memudahkan model melatih data yang kami berikan untuk memberikan respons dari pengguna
-Gambar 5.0 Tokenizer di patternsTokenizers digunakan untuk mengonversi teks menjadi rangkaian angka yang dapat dipahami oleh model deep learning. Proses ini melibatkan langkah-langkah seperti tokenisasi (memecah teks menjadi kata atau token), mengubah kata menjadi indeks, dan sebagainya. Setelah tokenizer dilatih, kita dapat menggunakannya untuk mengubah setiap teks baru menjadi urutan angka yang sesuai.
+
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/b6270ed9-fbbc-4be8-a0cc-cccc94517ac1)
+
+Tokenizer di patternsTokenizers digunakan untuk mengonversi teks menjadi rangkaian angka yang dapat dipahami oleh model deep learning. Proses ini melibatkan langkah-langkah seperti tokenisasi (memecah teks menjadi kata atau token), mengubah kata menjadi indeks, dan sebagainya. Setelah tokenizer dilatih, kita dapat menggunakannya untuk mengubah setiap teks baru menjadi urutan angka yang sesuai.
 
 
 # Metode
@@ -56,14 +59,21 @@ Secara keseluruhan, model saya dirancang untuk memahami dan mengekstrak pola kom
 
 Evaluasi yang ditampilkan dari penelitian ini adalah akurasi dari kecocokan antara user input dengna chat bot.
 
-UI/UX
+# UI/UX
 
 ![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/157ff643-9207-4b38-932c-d476b576b3ba)
 
  
-Jadwal Penelitian
+# Jadwal Penelitian
 
 ![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/fdfc4320-38b9-4b95-8098-c4c8a0ca521b)
+
+
+# Hasil
+
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/4c6aa2f2-bcd8-4727-8d9f-0d98fc4cb68f)
+
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/69b3bdcd-bb79-4de0-a118-83c28eb62f33)
 
 
 DAFTAR PUSTAKA
