@@ -18,28 +18,62 @@ Pada penelitian yang dilakukan oleh Yogi (5) Sistem Question and Answering (QA) 
 DATASET
 Data set yang didapat bersumber dari Kaggle dan dataset bersifat public. Dataset yang diadapat terdapat 3 kolom dan 80 baris. Kolom tersebut diantaranya ada kolom tag, patterns, dan responses. Untuk kolom tag menjelaskan penegelompokan dari hasil pattern dan responses. Kolom tag beriskan greeting, morning, afternoon, night, dan lainnya. Lalu untuk kolom patterns, memuat kalimat dan kata kata yang biasanya diinputkan oleh user, sedangkan responses adalah hasil respon dari kalimat/ kata yang diberikan dari kolom pattern.
 
-METODE YANG DIGUNAKAN
+# Tentang Kumpulan Data
 
-Preprocessing
+Untuk mengambil datanya saya ambil dari situs data publik yaitu dari Kaggle. Halaman ini menyajikan data dalam format .json yang berisi obrolan umum dan pengetahuan mengenai kesehatan mental. Ada link untuk Dataset : https://www.kaggle.com/datasets/elvis23/mental-health-conversational-data/data
 
-Pertama dilakukan penerjemahan Bahasa dari inggris ke Indonesia.Lalu data dimpor dan dimuat di dalam sebuah variabel. Data tersebut masuk ke tahap preprocessing data, pada preprocessing data dilakukan pemisahan untuk kolom pattern supaya nantinya model dapat Memahami pola apa saja yang dapat memiliki respon yang sama. 
+# Fitur Kumpulan Data
 
-Metode
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/aa40b101-9fc9-4440-b3fc-2c2734e11a14)
 
-Metode yang digunakan dalam penelitian ini adalah untuk membangun sebuah model deep learning menggunakan TensorFlow dan Keras untuk tugas klasifikasi teks. Pertama, library TensorFlow dan modul-modul Keras diimpor. Selanjutnya, sebuah objek model Sequential dibentuk, yang digunakan untuk mendefinisikan arsitektur model secara berurutan. Model dimulai dengan layer Input, yang menerima input data dengan bentuk yang sesuai. Kemudian, layer Embedding digunakan untuk mengubah kata-kata menjadi representasi vektor numerik, sebuah langkah penting dalam pemrosesan teks. Tiga layer LSTM berturut-turut dengan masing-masing 32 unit ditambahkan ke model. LSTM (Long Short-Term Memory) digunakan untuk memproses data dalam urutan, seperti teks. Dua dari tiga layer LSTM memiliki parameter `return_sequences=True`, yang berarti outputnya adalah urutan sekuensial. Selama proses pembangunan model, juga digunakan layer Normalisasi untuk meningkatkan stabilitas dan percepatan pelatihan. Layer Dense digunakan untuk menambahkan lapisan-lapisan terhubung penuh dengan aktivasi ReLU, yang akan menghasilkan output akhir berdasarkan pola yang dipelajari oleh model. Setelah model dibuat, dilakukan pengujian 
+Fitur Dataset Pada data set ini terdapat 3 fitur. Ini termasuk tag, pola, dan tanggapan. Tag merupakan penanda data teks untuk menandai teks tersebut termasuk dalam suatu kategori (salam, salam pagi, siang, sore, minta tolong, dan sebagainya). Pola adalah pola yang diberikan oleh pengguna untuk kategori tersebut. Saat pengguna mengetik selamat pagi, ia akan memasukkan penanda tag di mesin pembelajaran nantinya. Dan yang terakhir adalah respon, respon disini adalah memberikan respon terhadap masukan dari pengguna mengenai apa yang pengguna berikan dari komputer. Dan sasaran penelitiannya adalah tag, dan variabel prediktornya adalah pola dan respon
 
-Evaluasi
+# Kondisi Kumpulan Data
+Kumpulan data ini berisi 237 data percakapan. Tidak ada nilai yang hilang dari data ini. Namun saya menambahkan beberapa data tambahan di dalamnya agar percakapan antara robot dan pengguna menjadi lebih baik. Dari 237 data menjadi 360 data. Data yang diberikan mengenai pemecahan masalah menambah pengetahuan mengenai topik kesehatan mental.
+
+# Pra-Pemrosesan Data
+Pertama, panggil data berformat .json ke dalam kode editor, lalu kita ubah menjadi Dataframe
+Gambar 3.0 Load format .json dan konversikan ke Dataframe Kedua, kita akan pisahkan semua nilai yang ada di setiap kolom dan akan kita masukkan ke dalam setiap fitur yang sudah ditentukan.
+
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/0189391b-6ba8-4212-9a6b-aa4d35ff02ee)
+
+Hal ini untuk memudahkan model melatih data yang kami berikan untuk memberikan respons dari pengguna
+
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/b6270ed9-fbbc-4be8-a0cc-cccc94517ac1)
+
+Tokenizer di patternsTokenizers digunakan untuk mengonversi teks menjadi rangkaian angka yang dapat dipahami oleh model deep learning. Proses ini melibatkan langkah-langkah seperti tokenisasi (memecah teks menjadi kata atau token), mengubah kata menjadi indeks, dan sebagainya. Setelah tokenizer dilatih, kita dapat menggunakannya untuk mengubah setiap teks baru menjadi urutan angka yang sesuai.
+
+
+# Metode
+
+Model yang saya rancang adalah Model LSTM Sequential, yang didasarkan pada tiga lapisan LSTM yang berurutan. Setiap lapisan LSTM terdiri dari 32 unit, dirancang untuk menangkap ketergantungan jangka panjang dalam rangkaian data teks. Keberadaan lapisan normalisasi setelah setiap lapisan LSTM memastikan stabilitas dalam pembelajaran, memungkinkan model saya lebih memahami pola kompleks dalam rangkaian data.
+
+Setelah lapisan LSTM, model saya menggabungkan dua lapisan Padat. Lapisan Dense pertama memiliki 128 unit dan menggunakan fungsi aktivasi ReLU, diikuti oleh lapisan normalisasi dan dropout untuk mencegah overfitting. Konfigurasi serupa diterapkan pada lapisan Dense kedua.
+
+Lapisan keluaran akhir adalah lapisan Padat dengan jumlah unit yang sesuai dengan kelas unik dalam data. Fungsi aktivasi softmax digunakan untuk menghasilkan distribusi probabilitas kelas.
+Dalam proses kompilasi, model saya menggunakan fungsi kerugian sparse_categorical_crossentropy, pengoptimal Adam, dan metrik akurasi. Selama pelatihan, model saya akan menghentikan pelatihan jika tidak ada peningkatan akurasi setelah 3 periode menggunakan panggilan balik EarlyStopping.
+
+Secara keseluruhan, model saya dirancang untuk memahami dan mengekstrak pola kompleks dalam rangkaian data teks, memberikan kemampuan optimal dalam tugas klasifikasi atau prediksi yang memerlukan pemahaman tentang ketergantungan jangka panjang. Proses pelatihan model menggunakan fungsi kerugian sparse_categorical_crossentropy dan pengoptimal Adam untuk mengoptimalkan parameter model. Dengan adanya callback EarlyStopping, model saya akan berhenti berlatih jika tidak ada peningkatan akurasi setelah beberapa periode tertentu. Model ini dapat diimplementasikan dalam sistem chatbot untuk memberikan respons yang kontekstual dan relevan terhadap masukan pengguna. 
+
+# Evaluasi
 
 Evaluasi yang ditampilkan dari penelitian ini adalah akurasi dari kecocokan antara user input dengna chat bot.
 
-UI/UX
+# UI/UX
 
 ![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/157ff643-9207-4b38-932c-d476b576b3ba)
 
  
-Jadwal Penelitian
+# Jadwal Penelitian
 
 ![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/fdfc4320-38b9-4b95-8098-c4c8a0ca521b)
+
+
+# Hasil
+
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/4c6aa2f2-bcd8-4727-8d9f-0d98fc4cb68f)
+
+![image](https://github.com/Mazcho/Sistem-Temu-Kembali-Informasi/assets/77985996/69b3bdcd-bb79-4de0-a118-83c28eb62f33)
 
 
 DAFTAR PUSTAKA
